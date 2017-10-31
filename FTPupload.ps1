@@ -53,32 +53,7 @@ $FTPClient | Add-Member -MemberType ScriptMethod -Name "CreateFtpDirectory" -Val
 
     $response.Close();
 }
-<#function Create-FtpDirectory {
-  param(
-    [Parameter(Mandatory=$true)]
-    [string]
-    $sourceuri,
-    [Parameter(Mandatory=$true)]
-    [string]
-    $username,
-    [Parameter(Mandatory=$true)]
-    [string]
-    $password
-  )
-	
-    if ($sourceUri -match '\\$|\\\w+$') { throw 'sourceuri should end with a file name' }
-    $ftprequest = [System.Net.FtpWebRequest]::Create($sourceuri);
-    $ftprequest.Method = [System.Net.WebRequestMethods+Ftp]::MakeDirectory
-    $ftprequest.UseBinary = $true
 
-    $ftprequest.Credentials = New-Object System.Net.NetworkCredential($username,$password)
-
-    $response = $ftprequest.GetResponse();
-
-    Write-Host Upload File Complete, status $response.StatusDescription
-
-    $response.Close();
-}#>
 $FTPClient | Add-Member -MemberType ScriptMethod -Name "UploadFTP" -Value {
 param(
     [Parameter(Mandatory=$true)]
